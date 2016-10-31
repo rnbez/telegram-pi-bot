@@ -1,3 +1,9 @@
+#!/usr/bin/python3
+
+# CHANGE YOU <CONTRAB> FILE
+# sudo crontab -e
+# @reboot python /home/pi/.bot/main.py [TOKEN] [ID] &
+
 import sys
 import time
 import os
