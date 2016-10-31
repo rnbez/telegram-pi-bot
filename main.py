@@ -49,3 +49,5 @@ if __name__ == '__main__':
         while 1:
             # pass
             time.sleep(100)
+
+    print('exiting...')

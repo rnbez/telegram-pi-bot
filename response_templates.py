@@ -16,3 +16,6 @@ You can say "hello", "hi", "what's up?" or 'help' to see the list of commands I 
 '''
 def help():
     return _help_
+
+def command_output(output):
+    return "### Command Output ### \n\n{0}\n\n ### Output End ###".format(output)

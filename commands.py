@@ -1,9 +1,12 @@
 import subprocess
 import response_templates as responses
 
+def run_command(command):
+    return subprocess.getoutput(command)
 
 def get_ip_addr():
-    addr = subprocess.getoutput('hostname -I')
+    # addr = subprocess.getoutput('hostname -I')
+    addr = run_command('hostname -I')
     return addr.split(maxsplit=1)[0]
 
 def get_command_and_params(msg):
@@ -19,6 +22,9 @@ def handle_commands(msg):
     print(cmd, params)
     if cmd == 'hello' or cmd == 'hi' or cmd == 'what\'s up' or cmd == 'help':
         return responses.help()  
+
+    if cmd == 'run':
+        return responses.command_output(run_command(params))
 
     if cmd == 'ip':
         return responses.myip(get_ip_addr())
