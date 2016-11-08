@@ -10,17 +10,17 @@ def get_ip_addr():
     return addr.split(maxsplit=1)[0]
 
 def get_command_and_params(msg):
-    v = msg.replace('/', '', 1).lower().split(maxsplit=1)
+    v = msg.replace('/', '', 1).split(maxsplit=1)
     if len(v) > 1:
-        return v
+        return v[0].lower(), v[1]
     
-    return v[0], None
+    return v[0].lower(), None
 
 
 def handle_commands(msg):
     cmd, params = get_command_and_params(msg)
     print(cmd, params)
-    if cmd == 'hello' or cmd == 'hi' or cmd == 'what\'s up' or cmd == 'help':
+    if cmd == 'start' or cmd == 'hello' or cmd == 'hi' or cmd == 'what\'s up' or cmd == 'help':
         return responses.help()  
 
     if cmd == 'run':
@@ -28,5 +28,8 @@ def handle_commands(msg):
 
     if cmd == 'ip':
         return responses.myip(get_ip_addr())
+    
+    if cmd == 'repeat':
+        return responses.repeat(params)
 
     return responses.sorry()

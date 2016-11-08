@@ -20,7 +20,7 @@ def say_hi():
     try:
         greetings = responses.greetings(commands.get_ip_addr()) 
         print(greetings)
-        bot.sendMessage(MASTER_ID, greetings)
+        bot.sendMessage(MASTER_ID, greetings, parse_mode='Markdown')
     except:
         print("Unexpected error:", sys.exc_info()[0])
         raise
@@ -32,9 +32,10 @@ def handle(msg):
 
     if content_type == 'text':
         answer = commands.handle_commands(msg['text'])
-        bot.sendMessage(chat_id, answer)
+        bot.sendMessage(chat_id, answer, parse_mode='Markdown')
 
 if __name__ == '__main__':
+    time.sleep(20)
     if len(sys.argv) > 2:
         TOKEN = sys.argv[1]
         MASTER_ID = sys.argv[2]        
@@ -48,6 +49,6 @@ if __name__ == '__main__':
         # Keep the program running.
         while 1:
             # pass
-            time.sleep(100)
+            time.sleep(0.1)
 
     print('exiting...')
