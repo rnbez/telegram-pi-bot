@@ -9,6 +9,9 @@ def get_ip_addr():
     addr = run_command('hostname -I')
     return addr.split(maxsplit=1)[0]
 
+def start_vncserver():
+    return run_command('vncserver :1')
+
 def get_command_and_params(msg):
     v = msg.replace('/', '', 1).split(maxsplit=1)
     if len(v) > 1:
@@ -28,6 +31,9 @@ def handle_commands(msg):
 
     if cmd == 'ip':
         return responses.myip(get_ip_addr())
+
+    if cmd == 'vnc':
+        return responses.command_output(start_vncserver())
     
     if cmd == 'repeat':
         return responses.repeat(params)
